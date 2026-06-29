@@ -4,18 +4,115 @@
 
 ---
 
-## Play
+## Installation & Setup
 
-Open `index.html` in any modern browser, or host the folder on any static server. Install to your home screen for offline play.
+### Option A — Play directly from GitHub Pages (no setup)
+
+If GitHub Pages is enabled on this repo, just open the published URL in any browser. No installation needed. The game installs itself as a PWA from there.
+
+---
+
+### Option B — Run locally from the GitHub repo
+
+This is the recommended path for development or self-hosting.
+
+**Requirements:** Git + any one of: Node.js, Python 3, or VS Code with the Live Server extension.
+
+#### Step 1 — Clone the repository
+
+Open a terminal and run:
 
 ```bash
-# Local dev server (no install needed):
-npx serve .
-# or
-python3 -m http.server 8080
+git clone https://github.com/Dela922/kjgl.kb.-km.git
 ```
 
-Then visit `http://localhost:8080`.
+This creates a folder called `kjgl.kb.-km` in your current directory.
+
+#### Step 2 — Enter the folder
+
+```bash
+cd kjgl.kb.-km
+```
+
+#### Step 3 — Check out the game branch
+
+The game lives on a specific branch, not `main`:
+
+```bash
+git checkout claude/browser-game-setup-ep4p8b
+```
+
+You should see a confirmation like:
+```
+Switched to branch 'claude/browser-game-setup-ep4p8b'
+```
+
+#### Step 4 — Start a local server
+
+The game uses ES modules, which **require a server** — double-clicking `index.html` will not work due to browser security restrictions on `file://` URLs. Pick any one of these methods:
+
+**Method 1: Node.js (recommended)**
+```bash
+npx serve .
+```
+If prompted to install `serve`, type `y` and press Enter. Then open: `http://localhost:3000`
+
+**Method 2: Python 3** (no install needed if Python is already installed)
+```bash
+python3 -m http.server 8080
+```
+Then open: `http://localhost:8080`
+
+**Method 3: VS Code Live Server extension**
+1. Open the `kjgl.kb.-km` folder in VS Code (`File → Open Folder`)
+2. Install the **Live Server** extension by Ritwick Dey (search in Extensions panel)
+3. Right-click `index.html` in the file explorer → **Open with Live Server**
+4. The browser opens automatically
+
+#### Step 5 — Play
+
+Open the URL from step 4 in any modern browser (Chrome, Firefox, Safari, Edge). The game loads instantly — no build step, no npm install required.
+
+---
+
+### Option C — Install as a PWA on your phone (offline play)
+
+After loading the game in your mobile browser using any of the methods above (or from GitHub Pages), you can install it to your home screen for fully offline play.
+
+**On Android (Chrome):**
+1. Open the game URL in Chrome
+2. Tap the three-dot menu (top right)
+3. Tap **"Add to Home screen"** or **"Install app"**
+4. Tap **Install** on the confirmation dialog
+5. The game icon appears on your home screen — tap it to play offline
+
+**On iPhone / iPad (Safari):**
+1. Open the game URL in Safari (must be Safari, not Chrome, for PWA install on iOS)
+2. Tap the **Share button** (box with arrow pointing up) at the bottom of the screen
+3. Scroll down and tap **"Add to Home Screen"**
+4. Tap **Add** in the top right
+5. The game icon appears on your home screen — tap it to play offline
+
+**On desktop Chrome / Edge:**
+1. Load the game URL
+2. Look for the install icon in the address bar (a `+` or computer icon on the right side)
+3. Click it and confirm — or use the browser menu → **"Install Mech Forge: Infinite"**
+4. The game opens in its own window and works offline
+
+> After the first load, the service worker caches all assets. You can then disconnect from the internet and the game continues to work.
+
+---
+
+### Keeping the game updated
+
+If you already cloned the repo and want the latest version:
+
+```bash
+cd kjgl.kb.-km
+git pull origin claude/browser-game-setup-ep4p8b
+```
+
+Then refresh your browser. The service worker will detect the new version and update the cache automatically.
 
 ---
 
