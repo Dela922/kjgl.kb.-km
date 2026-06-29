@@ -1,7 +1,10 @@
-const CACHE = 'mechforge-v1';
+const CACHE = 'mechforge-v2';
 const ASSETS = [
   '/',
   '/index.html',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png',
   '/src/main.js',
   '/src/state.js',
   '/src/canvas.js',
