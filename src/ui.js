@@ -377,7 +377,7 @@ export function renderRest(ctx, W, H, mouse) {
 }
 
 // ─── Event Screen ─────────────────────────────────────────────────────────────
-const EVENTS = [
+export const EVENTS = [
   {
     id: 'scrap_merchant',
     title: 'SCRAP MERCHANT',
