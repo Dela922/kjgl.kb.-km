@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#00d4ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MechForge">
+  <meta name="description" content="Roguelike auto-battler with robot/mech units. Infinite replayability. Offline PWA.">
+  <link rel="manifest" href="/manifest.json">
+  <title>Mech Forge: Infinite</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #0a0a0f;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    #game {
+      display: block;
+      touch-action: none;
+      cursor: pointer;
+      image-rendering: pixelated;
+    }
+    #install-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #111;
+      color: #00d4ff;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #334;
+      z-index: 100;
+    }
+    #install-banner button {
+      background: #00d4ff;
+      color: #0a0a0f;
+      border: none;
+      padding: 6px 14px;
+      font-family: monospace;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #install-banner.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="install-banner" class="hidden">
+    <span>Install for offline play</span>
+    <div>
+      <button id="install-btn">INSTALL</button>
+      <button id="dismiss-btn" style="background:transparent;color:#555;margin-left:8px;">✕</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    let deferredPrompt;
+    const banner = document.getElementById('install-banner');
+    const installBtn = document.getElementById('install-btn');
+    const dismissBtn = document.getElementById('dismiss-btn');
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      banner.classList.remove('hidden');
+    });
+
+    installBtn.addEventListener('click', async () => {
+      banner.classList.add('hidden');
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      }
+    });
+
+    dismissBtn.addEventListener('click', () => banner.classList.add('hidden'));
+
+    window.addEventListener('appinstalled', () => banner.classList.add('hidden'));
+  </script>
+</body>
+</html>

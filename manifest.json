@@ -1,0 +1,14 @@
+{
+  "name": "Mech Forge: Infinite",
+  "short_name": "MechForge",
+  "description": "Roguelike auto-battler deck builder with robot/mech units",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00d4ff",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
